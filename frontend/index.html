@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks &amp; Grading Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header Navigation (Flexbox) -->
+    <header class="header-navbar">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-wrapper">
+                <div class="brand-svg-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+                </div>
+                <div class="brand-info">
+                    <h1>Varsity Grading System</h1>
+                    <p>Department of Computer Science &amp; Engineering</p>
+                </div>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link active">
+                    <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    <span>Student Search</span>
+                </a>
+                <a href="admin.html" class="nav-link nav-link-btn">
+                    <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                    <span>Admin Portal</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Page Intro -->
+        <section class="page-intro">
+            <h2>Student Result Search</h2>
+            <p>Select your session, semester, and enter your Roll Number to inspect your marks and CGPA.</p>
+        </section>
+
+        <!-- Search Card (Flexbox Layout) -->
+        <section class="card search-card">
+            <form id="searchForm">
+                <div class="search-flex-row">
+                    <!-- Academic Session Dropdown -->
+                    <div class="flex-field">
+                        <label for="searchSession" class="form-label">
+                            Academic Session <span class="req">*</span>
+                        </label>
+                        <select id="searchSession" class="form-select" required>
+                            <option value="">-- Select Session --</option>
+                            <option value="2021-2022" selected>2021-2022</option>
+                            <option value="2022-2023">2022-2023</option>
+                            <option value="2023-2024">2023-2024</option>
+                            <option value="2020-2021">2020-2021</option>
+                            <option value="2024-2025">2024-2025</option>
+                        </select>
+                    </div>
+
+                    <!-- Semester Dropdown -->
+                    <div class="flex-field">
+                        <label for="searchSemester" class="form-label">
+                            Semester <span class="req">*</span>
+                        </label>
+                        <select id="searchSemester" class="form-select" required>
+                            <option value="">-- Select Semester --</option>
+                            <option value="1st Semester">1st Semester</option>
+                            <option value="2nd Semester">2nd Semester</option>
+                            <option value="3rd Semester">3rd Semester</option>
+                            <option value="4th Semester">4th Semester</option>
+                            <option value="5th Semester" selected>5th Semester</option>
+                            <option value="6th Semester">6th Semester</option>
+                            <option value="7th Semester">7th Semester</option>
+                            <option value="8th Semester">8th Semester</option>
+                        </select>
+                    </div>
+
+                    <!-- Student Roll Number Input -->
+                    <div class="flex-field">
+                        <label for="searchRoll" class="form-label">
+                            Student Roll Number <span class="req">*</span>
+                        </label>
+                        <input type="text" id="searchRoll" class="form-control" placeholder="e.g. CSE-2021-001 or 101" required value="CSE-2021-001" autocomplete="off">
+                    </div>
+
+                    <!-- Search Action Button -->
+                    <div class="flex-btn-field">
+                        <button type="submit" id="searchBtn" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                            <span>Search Result</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sample Presets for Quick Testing -->
+                <div class="sample-chips-flex">
+                    <span>Quick Test:</span>
+                    <button type="button" class="chip-btn sample-chip" data-roll="CSE-2021-001" data-sem="5th Semester" data-sess="2021-2022">
+                        Roll: CSE-2021-001 (5th Sem)
+                    </button>
+                    <button type="button" class="chip-btn sample-chip" data-roll="CSE-2021-002" data-sem="5th Semester" data-sess="2021-2022">
+                        Roll: CSE-2021-002 (5th Sem)
+                    </button>
+                    <button type="button" class="chip-btn sample-chip" data-roll="101" data-sem="3rd Semester" data-sess="2021-2022">
+                        Roll: 101 (3rd Sem)
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Alert Notification Box -->
+        <div id="searchAlert" class="alert alert-danger" style="display: none;"></div>
+
+        <!-- Result Marksheet Container (Flexbox) -->
+        <section id="resultContainer" class="result-container">
+            <article class="marksheet-card">
+                
+                <!-- University Header -->
+                <header class="univ-header">
+                    <div class="univ-header-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M12 1L2 6v2h20V6L12 1zm-7 8v9h2V9H5zm4 0v9h2V9H9zm4 0v9h2V9h-2zm4 0v9h2V9h-2zm4 0v9h2V9h-2zM2 19v2h20v-2H2z"/></svg>
+                    </div>
+                    <h2>University Academic Grade Sheet</h2>
+                    <p>Department of Computer Science &amp; Engineering &bull; Examination Branch</p>
+                    <div class="sheet-badge">Official Semester Report</div>
+                </header>
+
+                <!-- Student Bio Details (Flexbox) -->
+                <div class="bio-flex-container">
+                    <div class="bio-flex-item">
+                        <span class="bio-title">Student Name:</span>
+                        <span class="bio-value" id="resFullName">-</span>
+                    </div>
+                    <div class="bio-flex-item">
+                        <span class="bio-title">Roll Number:</span>
+                        <span class="bio-value" id="resRollNo">-</span>
+                    </div>
+                    <div class="bio-flex-item">
+                        <span class="bio-title">Registration No:</span>
+                        <span class="bio-value" id="resRegNo">-</span>
+                    </div>
+                    <div class="bio-flex-item">
+                        <span class="bio-title">Department:</span>
+                        <span class="bio-value" id="resDepartment">Computer Science &amp; Engineering</span>
+                    </div>
+                    <div class="bio-flex-item">
+                        <span class="bio-title">Academic Session:</span>
+                        <span class="bio-value" id="resSession">-</span>
+                    </div>
+                    <div class="bio-flex-item">
+                        <span class="bio-title">Semester:</span>
+                        <span class="bio-value" id="resSemester">-</span>
+                    </div>
+                    <div class="bio-flex-item">
+                        <span class="bio-title">Issue Date:</span>
+                        <span class="bio-value" id="resIssueDate">-</span>
+                    </div>
+                    <div class="bio-flex-item">
+                        <span class="bio-title">Academic Status:</span>
+                        <span class="bio-value"><span id="resStatusBadge" class="badge badge-green">PASSED</span></span>
+                    </div>
+                </div>
+
+                <!-- Key Metrics Summary (Flexbox) -->
+                <div class="metrics-flex-row">
+                    <div class="metric-flex-box">
+                        <div class="metric-lbl">Total Marks</div>
+                        <div class="metric-num" id="resTotalMarks">0.00 / 0.00</div>
+                        <div class="metric-desc">Obtained / Max</div>
+                    </div>
+                    <div class="metric-flex-box">
+                        <div class="metric-lbl">Percentage</div>
+                        <div class="metric-num" id="resPercentage">0.00%</div>
+                        <div class="metric-desc">Overall Score</div>
+                    </div>
+                    <div class="metric-flex-box highlight">
+                        <div class="metric-lbl">Semester GPA (SGPA)</div>
+                        <div class="metric-num" id="resSGPA">0.00</div>
+                        <div class="metric-desc">4.00 Scale</div>
+                    </div>
+                    <div class="metric-flex-box highlight">
+                        <div class="metric-lbl">Cumulative CGPA</div>
+                        <div class="metric-num" id="resCGPA">0.00</div>
+                        <div class="metric-desc" id="resRemarks">Academic Standing</div>
+                    </div>
+                </div>
+
+                <!-- Section 1: Continuous Assessment (Attendance & Midterm) -->
+                <h3 class="table-title">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H5v-4h9v4zm0-6H5V7h9v4zm5 6h-3v-4h3v4zm0-6h-3V7h3v4z"/></svg>
+                    <span>Continuous Assessment (Attendance &amp; Midterm)</span>
+                </h3>
+                <div style="overflow-x: auto;">
+                    <table class="simple-table">
+                        <thead>
+                            <tr>
+                                <th>Assessment Component</th>
+                                <th class="text-center">Maximum Marks</th>
+                                <th class="text-center">Marks Obtained</th>
+                                <th class="text-center">Score %</th>
+                                <th class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="continuousAssessmentBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Section 2: 4 CSE Subjects -->
+                <h3 class="table-title">
+                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                    <span>CSE 4 Subjects Individual Marks</span>
+                </h3>
+                <div style="overflow-x: auto;">
+                    <table class="simple-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 45px;">#</th>
+                                <th>Course Code</th>
+                                <th>Course Title</th>
+                                <th class="text-center">Credits</th>
+                                <th class="text-center">Max Marks</th>
+                                <th class="text-center">Marks Obtained</th>
+                                <th class="text-center">Letter Grade</th>
+                                <th class="text-center">Grade Point</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subjectsTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Section 3: Academic Progression (Multi-Semester) -->
+                <div id="academicHistorySection" style="display: none; margin-top: 1rem;">
+                    <h3 class="table-title">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                        <span>Multi-Semester Academic History &amp; CGPA Progression</span>
+                    </h3>
+                    <div style="overflow-x: auto;">
+                        <table class="simple-table">
+                            <thead>
+                                <tr>
+                                    <th>Semester</th>
+                                    <th>Session</th>
+                                    <th class="text-center">Total Marks</th>
+                                    <th class="text-center">Semester GPA</th>
+                                    <th class="text-center">Grade</th>
+                                    <th class="text-center">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="academicHistoryBody">
+                                <!-- Populated dynamically if student has multiple terms -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Grading Scale Legend -->
+                <div class="legend-box">
+                    <strong>Standard University 4.00 Grading Scale:</strong>
+                    <div class="legend-flex-row">
+                        <div class="legend-pill"><strong>80% - 100%</strong>: A+ (4.00)</div>
+                        <div class="legend-pill"><strong>75% - 79%</strong>: A (3.75)</div>
+                        <div class="legend-pill"><strong>70% - 74%</strong>: A- (3.50)</div>
+                        <div class="legend-pill"><strong>65% - 69%</strong>: B+ (3.25)</div>
+                        <div class="legend-pill"><strong>60% - 64%</strong>: B (3.00)</div>
+                        <div class="legend-pill"><strong>55% - 59%</strong>: B- (2.75)</div>
+                        <div class="legend-pill"><strong>50% - 54%</strong>: C+ (2.50)</div>
+                        <div class="legend-pill"><strong>45% - 49%</strong>: C (2.25)</div>
+                        <div class="legend-pill"><strong>40% - 44%</strong>: D (2.00)</div>
+                        <div class="legend-pill" style="color:var(--danger);"><strong>&lt; 40%</strong>: F (0.00)</div>
+                    </div>
+                </div>
+
+                <!-- Actions (Flexbox) -->
+                <div class="actions-flex">
+                    <button type="button" id="resetSearchBtn" class="btn btn-secondary">
+                        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                        <span>Search Another Student</span>
+                    </button>
+                </div>
+
+            </article>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science &amp; Engineering &bull; Student Marks &amp; Grading System</p>
+        </div>
+    </footer>
+
+    <script src="js/student.js"></script>
+</body>
+</html>

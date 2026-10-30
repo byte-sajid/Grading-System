@@ -1,0 +1,567 @@
+/* ==============================================================
+   University Marks Grading System - Core Stylesheet
+   Simple, Clean Flexbox Layout (No Animations, No Fancy Bloat)
+   ============================================================== */
+
+:root {
+    --primary: #1e40af;
+    --primary-dark: #1e293b;
+    --text-color: #0f172a;
+    --text-muted: #475569;
+    --bg-page: #f8fafc;
+    --bg-white: #ffffff;
+    --border-color: #cbd5e1;
+    --border-dark: #94a3b8;
+    
+    --success: #15803d;
+    --success-bg: #f0fdf4;
+    --danger: #b91c1c;
+    --danger-bg: #fef2f2;
+    --info-bg: #eff6ff;
+    --info-border: #bfdbfe;
+    --info-text: #1d4ed8;
+
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font);
+    background-color: var(--bg-page);
+    color: var(--text-color);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Flex Container */
+.container {
+    width: 100%;
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Header & Nav using Flexbox */
+.header-navbar {
+    background-color: var(--bg-white);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 0;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.brand-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.brand-svg-icon {
+    width: 38px;
+    height: 38px;
+    background-color: var(--primary);
+    color: #ffffff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.brand-svg-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+.brand-info h1 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.brand-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-white);
+    color: var(--text-color);
+    border-radius: 4px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.nav-link.active {
+    background-color: #eff6ff;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.nav-link-btn {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+}
+
+.nav-link-btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* Page Intro */
+.page-intro {
+    padding: 1.75rem 0 1rem;
+    text-align: center;
+}
+
+.page-intro h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    color: var(--primary-dark);
+}
+
+.page-intro p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+/* Simple Card */
+.card {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Search Form using Flexbox */
+.search-card {
+    border-top: 3px solid var(--primary);
+}
+
+.search-flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.flex-field {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 200px;
+    gap: 0.35rem;
+}
+
+.flex-btn-field {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+}
+
+.form-label {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.form-label .req {
+    color: var(--danger);
+}
+
+.form-control, .form-select {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: var(--text-color);
+    outline: none;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary);
+}
+
+/* Demo Chips */
+.sample-chips-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.chip-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background-color: #f1f5f9;
+    border: 1px solid var(--border-color);
+    color: var(--primary);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.chip-btn:hover {
+    background-color: #e2e8f0;
+}
+
+/* Simple Buttons */
+.btn {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.62rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: #f1f5f9;
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background-color: #e2e8f0;
+}
+
+/* Simple Alerts */
+.alert {
+    padding: 0.85rem 1rem;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.alert svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    fill: currentColor;
+}
+
+.alert-danger {
+    background-color: var(--danger-bg);
+    border: 1px solid #fecaca;
+    color: var(--danger);
+}
+
+.alert-success {
+    background-color: var(--success-bg);
+    border: 1px solid #bbf7d0;
+    color: var(--success);
+}
+
+/* Result Marksheet Container */
+.result-container {
+    display: none;
+}
+
+.marksheet-card {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+.univ-header {
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.univ-header-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.univ-header-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: currentColor;
+}
+
+.univ-header h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--primary-dark);
+}
+
+.univ-header p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.sheet-badge {
+    display: inline-block;
+    background-color: var(--primary-dark);
+    color: #ffffff;
+    padding: 0.25rem 0.85rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.5rem;
+}
+
+/* Student Bio Details using Flexbox */
+.bio-flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    background-color: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.bio-flex-item {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 280px;
+    font-size: 0.88rem;
+}
+
+.bio-title {
+    width: 130px;
+    color: var(--text-muted);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.bio-value {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* Summary Metrics using Flexbox */
+.metrics-flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.metric-flex-box {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 180px;
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.9rem;
+    text-align: center;
+}
+
+.metric-flex-box.highlight {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+.metric-lbl {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.metric-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 0.2rem 0;
+}
+
+.metric-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Tables */
+.table-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.table-title svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--primary);
+}
+
+.simple-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 0.86rem;
+}
+
+.simple-table th, .simple-table td {
+    padding: 0.65rem 0.85rem;
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+.simple-table th {
+    background-color: #f1f5f9;
+    font-weight: 700;
+    color: #334155;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.simple-table td.text-center, .simple-table th.text-center {
+    text-align: center;
+}
+
+/* Grade & Status Badges */
+.badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    border: 1px solid transparent;
+}
+
+.badge-green { background-color: #dcfce7; color: #15803d; border-color: #bbf7d0; }
+.badge-blue  { background-color: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
+.badge-amber { background-color: #fef3c7; color: #b45309; border-color: #fde68a; }
+.badge-red   { background-color: #fee2e2; color: #b91c1c; border-color: #fecaca; }
+
+/* Grading Scale Legend */
+.legend-box {
+    background-color: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    margin-top: 1rem;
+    font-size: 0.78rem;
+}
+
+.legend-flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.legend-pill {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    flex: 1 1 120px;
+    text-align: center;
+}
+
+/* Actions */
+.actions-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Footer */
+.site-footer {
+    background-color: var(--bg-white);
+    border-top: 1px solid var(--border-color);
+    padding: 1.25rem 0;
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}

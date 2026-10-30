@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Examination Console - Marks &amp; Grading System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <!-- Admin Navigation (Flexbox) -->
+    <header class="header-navbar admin-navbar">
+        <div class="container header-inner">
+            <a href="admin.html" class="brand-wrapper">
+                <div class="brand-svg-icon" style="background-color: #2563eb;" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                </div>
+                <div class="brand-info">
+                    <h1>Admin Examination Console</h1>
+                    <p>Department Examination Control &amp; Ledger</p>
+                </div>
+            </a>
+            <div id="adminNavRight" class="nav-links" style="display: none;">
+                <div class="admin-user-flex">
+                    <div class="admin-avatar-svg">
+                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <span id="adminDisplayUsername">Administrator</span>
+                </div>
+                <a href="index.html" class="nav-link" target="_blank">
+                    <svg style="width:14px;height:14px;fill:currentColor;" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    <span>View Student Portal</span>
+                </a>
+                <button type="button" id="adminLogoutBtn" class="btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.82rem;">
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- ==============================================================
+             SECTION 1: ADMIN LOGIN (Shown when unauthenticated)
+             ============================================================== -->
+        <section id="authSection" class="auth-wrapper">
+            <div class="card" style="box-shadow: none;">
+                <div class="auth-header">
+                    <div class="auth-icon-svg">
+                        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                    </div>
+                    <h2>Controller Login</h2>
+                    <p>Department examination administrative access</p>
+                </div>
+
+                <div id="loginAlert" class="alert alert-danger" style="display:none;"></div>
+
+                <form id="loginForm">
+                    <div style="margin-bottom: 0.85rem;">
+                        <label for="loginUsername" class="form-label">Username</label>
+                        <input type="text" id="loginUsername" class="form-control" placeholder="Admin username" required autocomplete="username" value="admin">
+                    </div>
+                    <div style="margin-bottom: 1.25rem;">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Admin password" required autocomplete="current-password" value="admin123">
+                    </div>
+                    <button type="submit" id="loginSubmitBtn" class="btn btn-primary" style="width: 100%; margin-bottom: 0.75rem;">
+                        Sign In to Dashboard
+                    </button>
+                    <button type="button" id="demoFillBtn" class="btn btn-secondary" style="width: 100%; font-size: 0.82rem;">
+                        Fill Demo Credentials (admin / admin123)
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             SECTION 2: ADMIN DASHBOARD (Shown when authenticated)
+             ============================================================== -->
+        <section id="dashboardSection" class="admin-dashboard" style="display: none;">
+            
+            <!-- Statistics Row (Flexbox) -->
+            <div class="stats-flex-row">
+                <div class="stat-flex-card">
+                    <div class="stat-content">
+                        <h4>Total Marksheets</h4>
+                        <div class="stat-value" id="statTotalRecords">0</div>
+                    </div>
+                    <div class="stat-icon-wrap blue">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H5v-4h9v4zm0-6H5V7h9v4zm5 6h-3v-4h3v4zm0-6h-3V7h3v4z"/></svg>
+                    </div>
+                </div>
+                <div class="stat-flex-card">
+                    <div class="stat-content">
+                        <h4>Registered Students</h4>
+                        <div class="stat-value" id="statTotalStudents">0</div>
+                    </div>
+                    <div class="stat-icon-wrap purple">
+                        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+                    </div>
+                </div>
+                <div class="stat-flex-card">
+                    <div class="stat-content">
+                        <h4>Average CGPA</h4>
+                        <div class="stat-value" id="statAvgGPA">0.00</div>
+                    </div>
+                    <div class="stat-icon-wrap amber">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                </div>
+                <div class="stat-flex-card">
+                    <div class="stat-content">
+                        <h4>Overall Pass Rate</h4>
+                        <div class="stat-value" id="statPassRate">0%</div>
+                    </div>
+                    <div class="stat-icon-wrap green">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs Bar (Flexbox) -->
+            <div class="tabs-flex-bar">
+                <button type="button" class="tab-btn active" data-tab="tabEntry">
+                    <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                    <span>Marks Entry &amp; Grading Form</span>
+                </button>
+                <button type="button" class="tab-btn" data-tab="tabRecords">
+                    <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+                    <span>Manage Marksheets</span>
+                </button>
+            </div>
+
+            <!-- ==============================================================
+                 TAB 1: MARKS ENTRY FORM (Flexbox Split Layout)
+                 ============================================================== -->
+            <div id="tabEntry" class="tab-pane active">
+                <div class="entry-flex-layout">
+                    
+                    <!-- Left Column: Form -->
+                    <div class="entry-form-col">
+                        <form id="marksEntryForm">
+                            
+                            <!-- 1. Student Info -->
+                            <div class="form-section">
+                                <div class="form-section-head">
+                                    <h3>
+                                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                        <span>Student Identification</span>
+                                    </h3>
+                                    <span id="formModeBadge" class="badge badge-green">New Entry</span>
+                                </div>
+
+                                <div class="flex-form-row">
+                                    <div class="flex-form-item">
+                                        <label class="form-label" for="entryRollNo">Roll Number <span class="req">*</span></label>
+                                        <input type="text" id="entryRollNo" class="form-control" placeholder="e.g. CSE-2021-001 or 101" required autocomplete="off">
+                                    </div>
+                                    <div class="flex-form-item">
+                                        <label class="form-label" for="entryFullName">Student Full Name <span class="req">*</span></label>
+                                        <input type="text" id="entryFullName" class="form-control" placeholder="e.g. Tanvir Ahmed" required>
+                                    </div>
+                                    <div class="flex-form-item">
+                                        <label class="form-label" for="entryRegNo">Registration Number</label>
+                                        <input type="text" id="entryRegNo" class="form-control" placeholder="e.g. REG-2021-78901">
+                                    </div>
+                                </div>
+
+                                <div class="flex-form-row">
+                                    <div class="flex-form-item">
+                                        <label class="form-label" for="entrySession">Academic Session <span class="req">*</span></label>
+                                        <select id="entrySession" class="form-select" required>
+                                            <option value="">-- Select Session --</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex-form-item">
+                                        <label class="form-label" for="entrySemester">Academic Semester <span class="req">*</span></label>
+                                        <select id="entrySemester" class="form-select" required>
+                                            <option value="">-- Select Semester --</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex-form-item">
+                                        <label class="form-label" for="entryDepartment">Department</label>
+                                        <input type="text" id="entryDepartment" class="form-control" value="Computer Science &amp; Engineering" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Continuous Assessment (Attendance & Midterm) -->
+                            <div class="form-section">
+                                <div class="form-section-head">
+                                    <h3>
+                                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H5v-4h9v4zm0-6H5V7h9v4zm5 6h-3v-4h3v4zm0-6h-3V7h3v4z"/></svg>
+                                        <span>Continuous Assessment (Attendance &amp; Midterm)</span>
+                                    </h3>
+                                </div>
+                                <div class="flex-form-row">
+                                    <div class="flex-form-item">
+                                        <label class="form-label" for="entryAttendanceMarks">Attendance Marks <span class="req">*</span></label>
+                                        <input type="number" id="entryAttendanceMarks" class="form-control" step="0.1" min="0" max="100" placeholder="e.g. 9.5" required value="9.0">
+                                    </div>
+                                    <div class="flex-form-item">
+                                        <label class="form-label" for="entryAttendanceMax">Attendance Max</label>
+                                        <input type="number" id="entryAttendanceMax" class="form-control" step="1" min="1" max="100" value="10" required>
+                                    </div>
+                                    <div class="flex-form-item">
+                                        <label class="form-label" for="entryMidtermMarks">Midterm Exam Marks <span class="req">*</span></label>
+                                        <input type="number" id="entryMidtermMarks" class="form-control" step="0.1" min="0" max="100" placeholder="e.g. 18.0" required value="17.5">
+                                    </div>
+                                    <div class="flex-form-item">
+                                        <label class="form-label" for="entryMidtermMax">Midterm Max</label>
+                                        <input type="number" id="entryMidtermMax" class="form-control" step="1" min="1" max="100" value="20" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. CSE 4 Subjects Marks -->
+                            <div class="form-section">
+                                <div class="form-section-head">
+                                    <h3>
+                                        <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                                        <span>CSE 4 Subjects Examination Marks</span>
+                                    </h3>
+                                </div>
+
+                                <!-- Subject 1 -->
+                                <div class="subject-row-box">
+                                    <div class="subject-head-flex">
+                                        <span>Subject 1</span>
+                                        <span id="liveSub1Grade" class="badge badge-green">A+ (4.00)</span>
+                                    </div>
+                                    <div class="subject-inputs-flex">
+                                        <div style="flex:1 1 120px;">
+                                            <input type="text" id="sub1Code" class="form-control" value="CSE-311" placeholder="Code" required>
+                                        </div>
+                                        <div style="flex:2 1 180px;">
+                                            <input type="text" id="sub1Name" class="form-control" value="Computer Networks" placeholder="Subject Title" required>
+                                        </div>
+                                        <div style="flex:0 1 70px;">
+                                            <input type="number" id="sub1Credit" class="form-control" step="0.5" min="0.5" max="6" value="3.0" placeholder="Credit" required>
+                                        </div>
+                                        <div style="flex:1 1 90px;">
+                                            <input type="number" id="sub1Marks" class="form-control" step="0.5" min="0" max="100" value="82" placeholder="Marks" required>
+                                        </div>
+                                        <div style="flex:0 1 75px;">
+                                            <input type="number" id="sub1Max" class="form-control" value="100" placeholder="Max" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Subject 2 -->
+                                <div class="subject-row-box">
+                                    <div class="subject-head-flex">
+                                        <span>Subject 2</span>
+                                        <span id="liveSub2Grade" class="badge badge-green">A (3.75)</span>
+                                    </div>
+                                    <div class="subject-inputs-flex">
+                                        <div style="flex:1 1 120px;">
+                                            <input type="text" id="sub2Code" class="form-control" value="CSE-312" placeholder="Code" required>
+                                        </div>
+                                        <div style="flex:2 1 180px;">
+                                            <input type="text" id="sub2Name" class="form-control" value="Web Technologies &amp; Applications" placeholder="Subject Title" required>
+                                        </div>
+                                        <div style="flex:0 1 70px;">
+                                            <input type="number" id="sub2Credit" class="form-control" step="0.5" min="0.5" max="6" value="3.0" placeholder="Credit" required>
+                                        </div>
+                                        <div style="flex:1 1 90px;">
+                                            <input type="number" id="sub2Marks" class="form-control" step="0.5" min="0" max="100" value="78" placeholder="Marks" required>
+                                        </div>
+                                        <div style="flex:0 1 75px;">
+                                            <input type="number" id="sub2Max" class="form-control" value="100" placeholder="Max" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Subject 3 -->
+                                <div class="subject-row-box">
+                                    <div class="subject-head-flex">
+                                        <span>Subject 3</span>
+                                        <span id="liveSub3Grade" class="badge badge-green">A- (3.50)</span>
+                                    </div>
+                                    <div class="subject-inputs-flex">
+                                        <div style="flex:1 1 120px;">
+                                            <input type="text" id="sub3Code" class="form-control" value="CSE-313" placeholder="Code" required>
+                                        </div>
+                                        <div style="flex:2 1 180px;">
+                                            <input type="text" id="sub3Name" class="form-control" value="Artificial Intelligence" placeholder="Subject Title" required>
+                                        </div>
+                                        <div style="flex:0 1 70px;">
+                                            <input type="number" id="sub3Credit" class="form-control" step="0.5" min="0.5" max="6" value="3.0" placeholder="Credit" required>
+                                        </div>
+                                        <div style="flex:1 1 90px;">
+                                            <input type="number" id="sub3Marks" class="form-control" step="0.5" min="0" max="100" value="72" placeholder="Marks" required>
+                                        </div>
+                                        <div style="flex:0 1 75px;">
+                                            <input type="number" id="sub3Max" class="form-control" value="100" placeholder="Max" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Subject 4 -->
+                                <div class="subject-row-box">
+                                    <div class="subject-head-flex">
+                                        <span>Subject 4</span>
+                                        <span id="liveSub4Grade" class="badge badge-green">A+ (4.00)</span>
+                                    </div>
+                                    <div class="subject-inputs-flex">
+                                        <div style="flex:1 1 120px;">
+                                            <input type="text" id="sub4Code" class="form-control" value="CSE-314" placeholder="Code" required>
+                                        </div>
+                                        <div style="flex:2 1 180px;">
+                                            <input type="text" id="sub4Name" class="form-control" value="Compiler Design" placeholder="Subject Title" required>
+                                        </div>
+                                        <div style="flex:0 1 70px;">
+                                            <input type="number" id="sub4Credit" class="form-control" step="0.5" min="0.5" max="6" value="3.0" placeholder="Credit" required>
+                                        </div>
+                                        <div style="flex:1 1 90px;">
+                                            <input type="number" id="sub4Marks" class="form-control" step="0.5" min="0" max="100" value="84" placeholder="Marks" required>
+                                        </div>
+                                        <div style="flex:0 1 75px;">
+                                            <input type="number" id="sub4Max" class="form-control" value="100" placeholder="Max" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Action Buttons (Flexbox) -->
+                            <div style="display:flex; gap:0.75rem; align-items:center;">
+                                <button type="submit" id="saveMarksBtn" class="btn btn-primary">
+                                    <svg viewBox="0 0 24 24"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                                    <span>Save Marksheet &amp; Calculate</span>
+                                </button>
+                                <button type="button" id="resetFormBtn" class="btn btn-secondary">
+                                    <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                                    <span>Reset Form</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Live Calculation Box -->
+                    <div class="entry-preview-col">
+                        <div class="live-preview-box">
+                            <div class="live-preview-head">
+                                <h4>
+                                    <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+                                    <span>Live Calculation</span>
+                                </h4>
+                                <span class="badge badge-blue">Auto</span>
+                            </div>
+
+                            <div class="live-metric-row">
+                                <span style="color:var(--text-muted);">Total Marks:</span>
+                                <span class="val" id="liveTotalMarks">342.5 / 430</span>
+                            </div>
+                            <div class="live-metric-row">
+                                <span style="color:var(--text-muted);">Percentage:</span>
+                                <span class="val" id="livePercentage">79.6%</span>
+                            </div>
+                            <div class="live-metric-row">
+                                <span style="color:var(--text-muted);">Semester GPA:</span>
+                                <span class="val" id="liveSGPA" style="color:var(--primary); font-size:1.15rem;">3.81</span>
+                            </div>
+                            <div class="live-metric-row">
+                                <span style="color:var(--text-muted);">Evaluation:</span>
+                                <span class="val" id="liveStanding" style="font-size:0.8rem; color:var(--success);">Status: Excellent (A)</span>
+                            </div>
+
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.85rem; line-height:1.4;">
+                                Calculates live as you type marks for attendance, midterm, and CSE subjects.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ==============================================================
+                 TAB 2: MANAGE MARKSHEETS TABLE
+                 ============================================================== -->
+            <div id="tabRecords" class="tab-pane">
+                
+                <!-- Filter Bar (Flexbox) -->
+                <div class="filter-flex-bar">
+                    <div class="filter-flex-item" style="flex:2 1 220px;">
+                        <label class="form-label" for="filterSearch">Search Student</label>
+                        <input type="text" id="filterSearch" class="form-control" placeholder="Search by Roll Number or Name...">
+                    </div>
+                    <div class="filter-flex-item">
+                        <label class="form-label" for="filterSemester">Semester</label>
+                        <select id="filterSemester" class="form-select">
+                            <option value="">All Semesters</option>
+                        </select>
+                    </div>
+                    <div class="filter-flex-item">
+                        <label class="form-label" for="filterSession">Session</label>
+                        <select id="filterSession" class="form-select">
+                            <option value="">All Sessions</option>
+                        </select>
+                    </div>
+                    <div style="flex:0 0 auto;">
+                        <button type="button" id="clearFiltersBtn" class="btn btn-secondary">
+                            <span>Clear</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Records Table -->
+                <div style="background-color:#ffffff; border:1px solid var(--border-color); border-radius:4px; overflow-x:auto;">
+                    <table class="simple-table" style="margin-bottom:0;">
+                        <thead>
+                            <tr>
+                                <th>Roll Number</th>
+                                <th>Full Name</th>
+                                <th>Session</th>
+                                <th>Semester</th>
+                                <th class="text-center">Total Marks</th>
+                                <th class="text-center">SGPA</th>
+                                <th class="text-center">Grade</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recordsTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Simple Preview Modal -->
+    <div id="previewModal" class="modal-backdrop">
+        <div class="modal-window">
+            <button type="button" class="modal-close modal-close-trigger" aria-label="Close">
+                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </button>
+            <div id="previewModalBody">
+                <!-- Injected dynamically -->
+            </div>
+            <div style="margin-top:1.25rem; text-align:right; border-top:1px solid var(--border-color); padding-top:0.75rem;">
+                <button type="button" class="btn btn-secondary modal-close-trigger">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Box -->
+    <div id="toastContainer" class="toast-box"></div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

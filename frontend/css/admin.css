@@ -1,0 +1,487 @@
+/* ==============================================================
+   Admin Dashboard & Marks Entry Stylesheet
+   Simple Flexbox Layout (No Animations, No Emoji, Pure SVG)
+   ============================================================== */
+
+.admin-navbar {
+    background-color: #0f172a;
+    color: #ffffff;
+    border-bottom: 1px solid #1e293b;
+}
+
+.admin-navbar .brand-info h1 {
+    color: #ffffff;
+}
+
+.admin-navbar .brand-info p {
+    color: #94a3b8;
+}
+
+.admin-user-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: #f1f5f9;
+}
+
+.admin-avatar-svg {
+    width: 28px;
+    height: 28px;
+    background-color: #3b82f6;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-avatar-svg svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+/* Auth Card */
+.auth-wrapper {
+    max-width: 420px;
+    margin: 3.5rem auto;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.auth-icon-svg {
+    width: 48px;
+    height: 48px;
+    background-color: #eff6ff;
+    color: var(--primary);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.auth-icon-svg svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.auth-header h2 {
+    font-size: 1.3rem;
+    color: var(--primary-dark);
+}
+
+.auth-header p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* Dashboard Main */
+.admin-dashboard {
+    padding: 1.5rem 0 3rem;
+}
+
+/* Stats Row using Flexbox */
+.stats-flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-flex-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 1 200px;
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+}
+
+.stat-content h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.stat-content .stat-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1.1;
+}
+
+.stat-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon-wrap svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.stat-icon-wrap.blue { background-color: #eff6ff; color: #1d4ed8; }
+.stat-icon-wrap.purple { background-color: #f5f3ff; color: #6d28d9; }
+.stat-icon-wrap.amber { background-color: #fffbeb; color: #b45309; }
+.stat-icon-wrap.green { background-color: #f0fdf4; color: #15803d; }
+
+/* Tabs using Flexbox */
+.tabs-flex-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    margin-bottom: -2px;
+}
+
+.tab-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background-color: #f8fafc;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Marks Entry Split Layout using Flexbox */
+.entry-flex-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.entry-form-col {
+    flex: 1 1 600px;
+}
+
+.entry-preview-col {
+    flex: 0 0 320px;
+}
+
+@media (max-width: 900px) {
+    .entry-preview-col {
+        flex: 1 1 100%;
+    }
+}
+
+/* Form Sections */
+.form-section {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-section-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.form-section-head h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.form-section-head svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--primary);
+}
+
+.flex-form-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-bottom: 0.85rem;
+}
+
+.flex-form-item {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 180px;
+    gap: 0.3rem;
+}
+
+/* Subject Item Card */
+.subject-row-box {
+    background-color: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.85rem;
+    margin-bottom: 0.85rem;
+}
+
+.subject-head-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.subject-inputs-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+/* Sticky Live Preview Box */
+.live-preview-box {
+    background-color: #ffffff;
+    border: 2px solid var(--primary);
+    border-radius: 4px;
+    padding: 1.25rem;
+    position: sticky;
+    top: 1rem;
+}
+
+.live-preview-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.live-preview-head h4 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.live-preview-head svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--primary);
+}
+
+.live-metric-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.86rem;
+}
+
+.live-metric-row:last-child {
+    border-bottom: none;
+}
+
+.live-metric-row .val {
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+/* Filter Bar using Flexbox */
+.filter-flex-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.85rem;
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.filter-flex-item {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 180px;
+    gap: 0.3rem;
+}
+
+/* Table Action Buttons */
+.table-btn-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 0.35rem;
+    justify-content: center;
+}
+
+.btn-small {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    background-color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.btn-small svg {
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+}
+
+.btn-small.btn-edit:hover {
+    background-color: #eff6ff;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-small.btn-view:hover {
+    background-color: #f0fdf4;
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.btn-small.btn-del:hover {
+    background-color: #fef2f2;
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+/* Simple Modal */
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(15, 23, 42, 0.5);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-backdrop.active {
+    display: flex;
+}
+
+.modal-window {
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 650px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.modal-close svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* Simple Toast */
+.toast-box {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.toast-item {
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toast-item svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+.toast-item.toast-success { background-color: #15803d; }
+.toast-item.toast-error { background-color: #b91c1c; }
